@@ -1,3 +1,6 @@
+v0.1 (2010-11-29)
+* Fixed bug where trying to access a value with val() for an empty jQuery set threw an error.
+
 2010-04-29
 * Fixed jQuery chaining bug in browsers that natively support placeholder
 

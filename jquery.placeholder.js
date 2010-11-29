@@ -65,7 +65,7 @@
         var jqueryVal = $.fn.val;
 
         $.fn.val = function () {
-            if (arguments.length === 0 && this[0].type === 'text') {
+            if (arguments.length === 0 && this.length > 0 && this[0].type === 'text') {
                 var val = jqueryVal.apply(this);
                 if (val === this.attr(this.data(dataKey))) {
                     return '';
