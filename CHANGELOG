@@ -1,0 +1,5 @@
+2010-04-29
+* Fixed jQuery chaining bug in browsers that natively support placeholder
+
+2009-12-09
+* Initial version
