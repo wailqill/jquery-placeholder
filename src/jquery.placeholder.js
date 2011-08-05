@@ -25,38 +25,35 @@
  * 
  * Url: http://github.com/wailqill/jquery-placeholder
  **/
- console.log(typeof(window.$));
- /*
 (function (win, $, undefined) {
-    var doc = win.document,
-	    has_support = 'placeholder' in doc.createElement('input'),
+    var has_support = 'placeholder' in win.document.createElement('input'),
         dataKey = 'placeholder-attribute-name';
 
     $.fn.placeholder = function (a, c) {
         if (has_support) return this;
-
+        
         var $this = $(this);
-
+        
         a = a || 'placeholder';
         c = c || a;
-
-        $this.data(dataKey, a);
-
-        var ff = function () {
-            $this.removeClass(c);
-            if (this.value == this.getAttribute(a))
-                this.value = "";
-        };
-
-        var fc = function () {
-            if (this.value) ff.apply(this);
-        };
-
-        this.focus(ff).bind('change keyup keydown', fc);
-        this.closest("form").submit(function () {
-            $this.each(ff);
-        });
-
+        
+        // $this.data(dataKey, a);
+        // 
+        // var ff = function () {
+        //     $this.removeClass(c);
+        //     if (this.value == this.getAttribute(a))
+        //         this.value = "";
+        // };
+        // 
+        // var fc = function () {
+        //     if (this.value) ff.apply(this);
+        // };
+        // 
+        // this.focus(ff).bind('change keyup keydown', fc);
+        // this.parents("form").submit(function () {
+        //     $this.each(ff);
+        // });
+        
         var b = function () {
             var p = this.getAttribute(a);
             if (this.value == p || this.value.match(/^\s*$/)) {
@@ -64,28 +61,28 @@
                 this.value = p;
             }
         };
-
+        
         this.blur(b);
         return this.each(b);
     };
 
-    if (!has_support) {
-        var jqueryVal = $.fn.val;
-
-        $.fn.val = function () {
-            if (arguments.length === 0 && this.length > 0 && this[0].type === 'text') {
-                var val = jqueryVal.apply(this);
-                if (val === this.attr(this.data(dataKey))) {
-                    return '';
-                }
-            }
-            return jqueryVal.apply(this, arguments);
-        };
-    }
-
+    // if (!has_support) {
+    //     var jqueryVal = $.fn.val;
+    // 
+    //     $.fn.val = function () {
+    //         if (arguments.length === 0 && this.length > 0 && this[0].type === 'text') {
+    //             var val = jqueryVal.apply(this);
+    //             if (val === this.attr(this.data(dataKey))) {
+    //                 return '';
+    //             }
+    //         }
+    //         return jqueryVal.apply(this, arguments);
+    //     };
+    // }
+    
     $(function () {
         if (has_support) return;
         $('input[placeholder], textarea[placeholder]').placeholder();
     });
 
-})(window, jQuery);*/
+})(window, jQuery);
