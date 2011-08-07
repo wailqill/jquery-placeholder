@@ -36,8 +36,15 @@ describe('Placeholder polyfill', function() {
 		expect(elm.value).toBe('test');
 	});
 	
-	it("should not be active when placeholder support is native", function() {
-	  document.createElement = function() { return { placeholder: true }; };
-	  // TODO: implement this spec!
+	describe("patches jQuery", function() {
+	  it("should make val() not return the placeholder value", function() {
+  		var elm = $('<input placeholder="test" />').placeholder();
+  		expect(elm.val()).toBe('');
+	  });
 	});
+  // 
+  // it("should not be active when placeholder support is native", function() {
+  //   spyOn(document, "createElement");// = function() { return { placeholder: true }; };
+  //   // TODO: implement this spec!
+  // });
 });

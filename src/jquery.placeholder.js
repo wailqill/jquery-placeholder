@@ -37,8 +37,8 @@
         a = a || 'placeholder';
         c = c || a;
         
-        // $this.data(dataKey, a);
-        // 
+        $this.data(dataKey, a);
+        
         // var ff = function () {
         //     $this.removeClass(c);
         //     if (this.value == this.getAttribute(a))
@@ -66,19 +66,19 @@
         return this.each(b);
     };
 
-    // if (!has_support) {
-    //     var jqueryVal = $.fn.val;
-    // 
-    //     $.fn.val = function () {
-    //         if (arguments.length === 0 && this.length > 0 && this[0].type === 'text') {
-    //             var val = jqueryVal.apply(this);
-    //             if (val === this.attr(this.data(dataKey))) {
-    //                 return '';
-    //             }
-    //         }
-    //         return jqueryVal.apply(this, arguments);
-    //     };
-    // }
+    if (!has_support) {
+        var jqueryVal = $.fn.val;
+    
+        $.fn.val = function () {
+            if (arguments.length === 0 && this.length > 0 && this[0].type === 'text') {
+                var val = jqueryVal.apply(this);
+                if (val === this.attr(this.data(dataKey))) {
+                    return '';
+                }
+            }
+            return jqueryVal.apply(this, arguments);
+        };
+    }
     
     $(function () {
         if (has_support) return;
