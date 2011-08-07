@@ -29,7 +29,7 @@
     var has_support = 'placeholder' in win.document.createElement('input'),
         dataKey = 'placeholder-attribute-name';
 
-    $.fn.placeholder = function (a, c) {
+    $.fn.placeholder = function (c, a) {
         if (has_support) return this;
         
         var $this = $(this);
@@ -39,17 +39,17 @@
         
         $this.data(dataKey, a);
         
-        // var ff = function () {
-        //     $this.removeClass(c);
-        //     if (this.value == this.getAttribute(a))
-        //         this.value = "";
-        // };
-        // 
+        var ff = function () {
+            $this.removeClass(c);
+            if (this.value == this.getAttribute(a))
+                this.value = "";
+        };
+        
         // var fc = function () {
         //     if (this.value) ff.apply(this);
         // };
-        // 
-        // this.focus(ff).bind('change keyup keydown', fc);
+        
+        this.focus(ff)//.bind('change keyup keydown', fc);
         // this.parents("form").submit(function () {
         //     $this.each(ff);
         // });

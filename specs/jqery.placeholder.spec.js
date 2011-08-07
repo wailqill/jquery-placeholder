@@ -5,43 +5,65 @@ function c(s) {
 }
 
 describe('Placeholder polyfill', function() {
-	it('should expose a jQuery method', function() {
-		expect($.fn.placeholder).toBeDefined();
-	});
+  describe("should be a jQuery plugin", function() {
+  	it('should expose a jQuery method', function() {
+  		expect($.fn.placeholder).toBeDefined();
+  	});
+  	it("should be chainable", function() {
+  	  var elm = $('<div><input /><input /><input /></div>').find('input');
+  		expect(elm.placeholder()).toEqual(elm);
+  	});
+  });
 	
-	it("should be chainable", function() {
-	  var elm = $('<input />');
-		expect(elm.placeholder()).toEqual(elm);
-	});
-	
-	describe("adds a class name and", function() {
-  	it("should be 'placeholder'", function() {
+	describe("add a class name to the element", function() {
+  	it("should add default class name 'placeholder'", function() {
   		var elm = $('<input placeholder="test" />').placeholder()[0];
   		expect(elm.className).toBe('placeholder');
   	});
 
-  	it("should be customizable", function() {
-  		var elm = $('<input placeholder="test" />').placeholder('whatever', 'custom')[0];
+  	it("should add a customizable class name to the element", function() {
+  		var elm = $('<input placeholder="test" />').placeholder('custom')[0];
   		expect(elm.className).toBe('custom');
   	});
 	});
 	
-	it("should set the value of the input to the placeholder value when invoked", function() {
-		var elm = $('<input placeholder="test" />').placeholder()[0];
-		expect(elm.value).toBe('test');
+	describe("should use the placeholder attribute", function() {
+  	it("should set the value of the input to the placeholder value when invoked", function() {
+  		var elm = $('<input placeholder="test" />').placeholder()[0];
+  		expect(elm.value).toBe('test');
+  	});
+
+  	it("adds the specified attribute name to the element", function() {
+  		var elm = $('<input custom="test" />').placeholder('whatever', 'custom')[0];
+  		expect(elm.value).toBe('test');
+  	});
 	});
 	
-	it("adds the specified attribute name to the element", function() {
-		var elm = $('<input custom="test" />').placeholder('custom')[0];
-		expect(elm.value).toBe('test');
-	});
-	
-	describe("patches jQuery", function() {
+	describe("patches jQuery.val()", function() {
 	  it("should make val() not return the placeholder value", function() {
   		var elm = $('<input placeholder="test" />').placeholder();
   		expect(elm.val()).toBe('');
 	  });
 	});
+	
+	describe("handles focus and blur", function() {
+	  it("should remove placeholder value on focus", function() {
+  		var elm = $('<input placeholder="test" />').placeholder();
+  		elm.focus();
+  		expect(elm[0].value).toBe('');
+	  });
+	  it("should restore placeholder value on blur if field is empty", function() {
+  		var elm = $('<input placeholder="foo" />').placeholder();
+  		elm.focus().blur();
+  		expect(elm[0].value).toBe('foo');
+	  });
+	  it("should not restore placeholder value if user entered text into field", function() {
+	    var elm = $('<input placeholder="foo" />').placeholder();
+  		elm.focus().val('bar').blur();
+  		expect(elm[0].value).toBe('bar');
+	  });
+	});
+	
   // 
   // it("should not be active when placeholder support is native", function() {
   //   spyOn(document, "createElement");// = function() { return { placeholder: true }; };
