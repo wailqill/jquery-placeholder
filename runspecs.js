@@ -2,6 +2,9 @@ var jsdom = require('jsdom');
 var jasmine = require('jasmine-node');
 var jquery = require('jquery');
 
+var isVerbose = false;
+var showColors = true;
+
 global.document = jsdom.jsdom('<html><head></head><body></body></html>');
 global.window = global.document.createWindow();
 global.window.jQuery = jquery;
@@ -19,4 +22,4 @@ jasmine.executeSpecsInFolder(__dirname + '/specs', function (runner, log) {
     } else {
         process.exit(1);
     }
-}, true, true);
+}, isVerbose, showColors, /\.spec\.(js|coffee)$/i);
