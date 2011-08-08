@@ -8,15 +8,15 @@ global.window.jQuery = jquery;
 
 // Test framework
 for (var key in jasmine) {
-  global[key] = jasmine[key];
+    global[key] = jasmine[key];
 }
 
 require("./src/jquery.placeholder.js")
 
-jasmine.executeSpecsInFolder(__dirname + '/specs', function(runner, log) {
-	if (runner.results().failedCount == 0) {
-  	process.exit(0);
-	} else {
-  	process.exit(1);
-	}
+jasmine.executeSpecsInFolder(__dirname + '/specs', function (runner, log) {
+    if (runner.results().failedCount == 0) {
+        process.exit(0);
+    } else {
+        process.exit(1);
+    }
 }, true, true);
