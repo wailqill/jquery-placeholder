@@ -61,7 +61,7 @@ describe('Placeholder polyfill', function () {
     });
 
     // How to handle this. I want to cache the test for native support, but I also
-    // wanna control it in each spec. And takers?
+    // wanna control it in each spec. Any takers?
     // describe("handles native support transparently", function () {
     //     it("should not be active when placeholder support is native", function () {
     //         spyOn(window.document, "createElement").andCallFake(function () {
