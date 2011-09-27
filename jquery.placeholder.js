@@ -45,7 +45,7 @@
         };
 
         this.focus(ff).bind('change keyup keydown', fc);
-        this.parents("form").submit(function () {
+        this.closest("form").submit(function () {
             $this.find("input").each(ff);
         });
 
