@@ -25,7 +25,7 @@
  * 
  * Url: http://github.com/wailqill/jquery-placeholder
  **/
-(function (win, $, undefined) {
+(function ($, win, undefined) {
     var has_support = 'placeholder' in win.document.createElement('input'),
         dataKey = 'placeholder-attribute-name';
 
@@ -85,4 +85,4 @@
         $('input[placeholder], textarea[placeholder]').placeholder();
     });
 
-})(window, jQuery);
+})(jQuery, window);
