@@ -17,6 +17,12 @@
  * trying to get the value from the field with jQuery when
  * it's 'empty'.
  * 
+ * Don't forget to style it with css:
+ *   input.placeholder,
+ *   input:-webkit-input-placeholder,
+ *   input:-ms-input-placeholder,
+ *   input:-moz-placeholder { font-style: italic; color: silver; }
+ * 
  * Url: http://github.com/wailqill/jquery-placeholder
  **/
 (function ($) {
